@@ -1,0 +1,14 @@
+.collapse {
+  @apply bg-white rounded shadow-lg;
+
+  &__title {
+    @apply text-lg;
+    @apply cursor-pointer;
+    @apply p-4 rounded-t;
+    background-color: #F4FCFB;
+  }
+
+  &__content {
+    @apply p-4;
+  }
+}

@@ -1,0 +1,17 @@
+html, body {
+  @apply h-full w-full m-0 p-0;
+}
+
+input[type="date"] {
+  position: relative;
+
+  &::-webkit-calendar-picker-indicator { 
+    position: absolute;
+    right: 0;
+    cursor: pointer;
+    filter: invert(1);
+    @apply rounded shadow;
+    @apply border border-white;
+    @apply p-1;
+  }
+}
