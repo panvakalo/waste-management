@@ -51,5 +51,6 @@ import AddressBlock from '~/components/stops/AddressBlock.vue'
 export default class StopListItem extends Vue {
   @Prop() readonly stop!: Stop
   @Provide() streamName = this.stop.name
+  @Provide() stopId = this.stop.stop_id
 }
 </script>

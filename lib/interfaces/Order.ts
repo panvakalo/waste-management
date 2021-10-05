@@ -7,3 +7,9 @@ export interface Order {
   status: number
   type: number
 }
+
+export interface OrderStatusPayload {
+  stopId: number
+  orderId: string
+  status: number
+}

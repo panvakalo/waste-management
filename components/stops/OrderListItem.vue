@@ -41,7 +41,8 @@
       <CheckIcon
         v-if="!isCompleted"
         size="25"
-        class="fill-current text-green-400"
+        class="fill-current text-green-400 cursor-pointer"
+        @click.native="completeOrder(order.order_id)"
       />
     </div>
     <t-modal
@@ -64,9 +65,15 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop, Inject } from 'nuxt-property-decorator'
+import {
+  Vue,
+  Component,
+  Prop,
+  Inject,
+  namespace,
+} from 'nuxt-property-decorator'
 import { TModal } from 'vue-tailwind/dist/components'
-import { Order } from '~/lib/interfaces/Order'
+import { Order, OrderStatusPayload } from '~/lib/interfaces/Order'
 import { StatusMap } from '~/lib/maps/StatusMap'
 import { OrderTypeMap } from '~/lib/maps/OrderMaps'
 import { CodeType } from '~/lib/interfaces/CodeType'
@@ -76,6 +83,8 @@ import InboundIcon from '~/components/svg/InboundIcon.vue'
 import OutboundIcon from '~/components/svg/OutboundIcon.vue'
 import IssueReporter from '~/components/stops/IssueReporter.vue'
 import { ModalClasses } from '~/lib/componentClasses/modal.classes'
+
+const stopStore = namespace('stopStore')
 
 @Component({
   components: {
@@ -90,6 +99,10 @@ import { ModalClasses } from '~/lib/componentClasses/modal.classes'
 export default class OrderListItem extends Vue {
   @Prop() readonly order!: Order
   @Inject() readonly streamName!: string
+  @Inject() readonly stopId!: number
+
+  @stopStore.Mutation
+  public setOrderStatus!: (orderStatusPayload: OrderStatusPayload) => void
 
   private statusMap: CodeType = StatusMap
   private orderTypeMap: CodeType = OrderTypeMap
@@ -121,6 +134,10 @@ export default class OrderListItem extends Vue {
 
   closeModal() {
     this.isModalVisible = false
+  }
+
+  completeOrder(id: string) {
+    this.setOrderStatus({ stopId: this.stopId, orderId: id, status: 4 })
   }
 }
 </script>
