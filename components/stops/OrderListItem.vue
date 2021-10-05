@@ -47,7 +47,7 @@
     </div>
     <t-modal
       v-model="isModalVisible"
-      :header="streamName"
+      :header="modalHeaderText"
       :classes="modalClasses"
     >
       <IssueReporter
@@ -126,6 +126,12 @@ export default class OrderListItem extends Vue {
 
   get isCompleted(): boolean {
     return this.order.status === 4
+  }
+
+  get modalHeaderText(): string {
+    return `${this.streamName} - ${this.order.stream_type} - ${
+      this.orderTypeMap[this.order.type]
+    }`
   }
 
   showModal() {
