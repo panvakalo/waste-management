@@ -26,7 +26,7 @@ Create a single page view, which let’s a driver process one stop and the order
 within it.
 
 ## Data Source
-- See attached “driver_sample_route.json”
+- See lib/data/driver_sample_route.json
 - A route has multiple stops, where each stop can have one or more orders. Each order is either a pickup or a dropoff order.
 - Each stop has some variation in data available. The UI should work for each
 of these stops.
@@ -95,3 +95,13 @@ intrinsically motivates me to use the application
 - modal actions are not doing anything, since they should end up as API calls to backend
 - issue reporting was implemented along with quantity reporting since both are logically connected
 - not sure what the order status is when an issue is reported
+
+## Setup
+
+create a .env file with the following content
+
+```API_URL=https://5a61e7a66d8c840012d61632.mockapi.io```
+
+> npm install
+
+> npm run dev
